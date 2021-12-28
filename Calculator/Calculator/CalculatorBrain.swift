@@ -11,7 +11,9 @@ class CalculatorBrain {
     //istenen işlemler + - * / bonus C CE =
     //standford university ios 9 > youtube video 1 ya da 2
     private var accumulator: Double = 0
-
+    private var momento: Double = 0
+    private var firstOperant: Double = 0
+    private var lastOperator: String = ""
     var result: Double {
         get {
             return accumulator
@@ -24,8 +26,35 @@ class CalculatorBrain {
         switch operation {
         case "√":
             accumulator = sqrt(result)
+        case "+":
+            firstOperant = result
+            lastOperator = "+"
+        case "/":
+            firstOperant = result
+            lastOperator = "/"
+        case "*":
+            firstOperant = result
+            lastOperator = "*"
+        case "-":
+            firstOperant = result
+            lastOperator = "-"
         case "=":
-            break
+            if lastOperator == "+" {
+                accumulator = firstOperant + result
+            }else if lastOperator == "-" {
+                accumulator = firstOperant - result
+            }else if lastOperator == "x" {
+                accumulator = firstOperant * result
+            }else if lastOperator == "/" {
+                accumulator = firstOperant / result
+            }
+            
+        case "C":
+            accumulator = 0
+        case "CE":
+            accumulator = 0
+            firstOperant = 0
+            lastOperator = ""
         default:
             break
         }
