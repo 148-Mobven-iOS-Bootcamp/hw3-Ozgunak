@@ -135,11 +135,14 @@ class ViewController: UIViewController {
         print("Date: ", sender.date) //"27<>12<>2021"  date.year
         // Sending date as string to chanceDateFormat func to get formatted date.
         let date = "\(sender.date)"
-        print(chanceDateFormat(dateString: date, withFormat: "<<dd>>MM<<yyy>>")!)
+        print(chanceDateFormat(dateString: date, withFormat: "dd>>MM<<yyyy")!)
+        // format argumant can be chanced as wish or "<<yyyy>>MM<<dd>>" is default
+        print(sender.date.toString(format: "dd<<yyyy"))
+
     }
     
     func chanceDateFormat(dateString: String, withFormat format: String) -> String? {
-        //MARK: - Homework formatting date
+        //MARK: - Homework formatting date first way
         // Gets date as "yyyy-MM-dd HH:mm:ss z" from date picker and chances it as we set
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z"
@@ -193,5 +196,17 @@ extension ViewController: UIScrollViewDelegate {
         return imageView
     }
     
+    
+}
+
+extension Date {
+    //MARK: - Date formatter as toString method second way
+
+    func toString(format: String = "<<yyyy>>MM<<dd>>") -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
     
 }
