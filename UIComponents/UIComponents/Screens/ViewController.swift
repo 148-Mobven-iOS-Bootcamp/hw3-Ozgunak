@@ -131,13 +131,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func datePıckerValueChanged(_ sender: UIDatePicker) {
-        
+        //MARK: - Homework date format and date extentions recalls
+
         print("Date: ", sender.date) //"27<>12<>2021"  date.year
         // Sending date as string to chanceDateFormat func to get formatted date.
         let date = "\(sender.date)"
-        print(chanceDateFormat(dateString: date, withFormat: "dd>>MM<<yyyy")!)
+        print(chanceDateFormat(dateString: date, withFormat: "dd<>MM<>yyyy")!)
         // format argumant can be chanced as wish or "<<yyyy>>MM<<dd>>" is default
-        print(sender.date.toString(format: "dd<<yyyy"))
+        print(sender.date.dateAsPrettyString(format: "dd<<yyyy"))
+        // day - month - year methods added for homework
+        print(sender.date.day())
+        // month function takes format argument "MMM" as default and returns 3 letter word of month.
+        // format: "MM" returns month with numeric.
+        print(sender.date.month())
+        print(sender.date.year())
+        
+
 
     }
     
@@ -200,9 +209,30 @@ extension ViewController: UIScrollViewDelegate {
 }
 
 extension Date {
-    //MARK: - Date formatter as toString method second way
+    //MARK: - Date formatter as dateAsPrettyString method second way and .day() .month() .year() extensions.
 
-    func toString(format: String = "<<yyyy>>MM<<dd>>") -> String {
+    func dateAsPrettyString(format: String = "dd<>MM<>yyyy") -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    func day(format: String = "dd") -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    func year(format: String = "yyyy") -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    func month(format: String = "MMM") -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.dateFormat = format

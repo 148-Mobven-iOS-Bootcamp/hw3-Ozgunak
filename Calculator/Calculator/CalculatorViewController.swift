@@ -32,27 +32,7 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func digitButtonTapped(_ sender: UIButton) {
-        //MARK: - CS193p Codes
-        if sender.titleLabel?.text == "." {
-            let text = String(result) + "."
-            result = NSString(string: text).doubleValue
-        } else if userIsTyping {
-            let digit = String(sender.tag)
-            print(sender.tag)
-            var text = resultLabel.text!
-            text = text + digit
-            result = NSString(string: text).doubleValue
-            
-        } else{
-            let digit = String(sender.tag)
-            resultLabel.text = digit
-            userIsTyping.toggle()
-        }
-        
-        
-        //MARK: - Bootcamp codes
-        
-        /*
+
          if userIsTyping {
          var resultText = String(Int(result))
          resultText = resultText + String(sender.tag)
@@ -61,7 +41,7 @@ class CalculatorViewController: UIViewController {
          resultLabel.text = String(sender.tag)
          userIsTyping.toggle()
          }
-         */
+         
     }
     
     @IBAction func operationButtonTapped(_ sender: UIButton) {
