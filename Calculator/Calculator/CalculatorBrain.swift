@@ -28,8 +28,8 @@ class CalculatorBrain {
         "+" : Operation.BinaryOperator({$0 + $1}),
         "-" : Operation.BinaryOperator({$0 - $1}),
         "=" : Operation.Equals,
-        "C" : Operation.Constant(0),
-        "CE" : Operation.CEReset
+        "C" : Operation.CEReset,
+        "CE" : Operation.Constant(0)
     ]
     
     
