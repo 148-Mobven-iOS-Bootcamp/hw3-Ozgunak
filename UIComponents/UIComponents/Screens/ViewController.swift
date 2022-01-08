@@ -211,6 +211,31 @@ extension ViewController: UIScrollViewDelegate {
 extension Date {
     //MARK: - Date formatter as dateAsPrettyString method second way and .day() .month() .year() extensions.
 
+    var dateAsPrettyString: String{
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = "dd<>MM<>yyyy"
+        return formatter.string(from: self)
+    }
+    
+    var day: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = "dd"
+        return formatter.string(from: self)
+    }
+    var mouth: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = "MM"
+        return formatter.string(from: self)
+    }
+    var year: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = "yyyy"
+        return formatter.string(from: self)
+    }
     func dateAsPrettyString(format: String = "dd<>MM<>yyyy") -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
